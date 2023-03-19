@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+</head>
+
+<body>
+    
+    <button  onclick="runScript()" class="btn btn-primary">Run script</button>
+    <hr>
+    <div id="output"></div>
+    <script>
+        function runScript() {
+            const message = [];
+const timeIDE = [];
+const commit = [];
+const touchKeyboard = [];
+const Employee = [];
+let triger = 0;
+const arrayLength = 90;
+
+const triggers = {};
+
+for (let j = 1; j < 11; j++) {
+    for (let i = 0; i < arrayLength; i++) {
+        message.push(Math.floor(Math.random() * (700 - 100)) + 100); // случайное значение пользователя', j, от 100 до 700
+        timeIDE.push(Math.floor(Math.random() * (10.5 - 3) + 3)); // случайное значение пользователя', j, от 3 до 10.5
+        commit.push(Math.floor(Math.random() * (10 - 1) + 1)); // случайное значение пользователя', j, от 1 до 10
+        touchKeyboard.push(Math.floor(Math.random() * (40000 - 500)) + 500); // случайное значение пользователя', j, от 500 до 40000
+    }
+
+
+    const messageAvg = message.reduce((acc, val) => acc + val) / message.length;
+    const timeIDEAvg = timeIDE.reduce((acc, val) => acc + val) / timeIDE.length;
+    const commitAvg = commit.reduce((acc, val) => acc + val) / commit.length;
+    const touchKeyboardAvg = touchKeyboard.reduce((acc, val) => acc + val) / touchKeyboard.length;
+
+
+    const randomM = Math.random() * (700 - 100) + 100;
+    const ToDayM = randomM - randomM * Math.random();
+
+    if (ToDayM < messageAvg * 0.9) {
+        triger = triger + 1;
+
+    }
+
+    const randomT = Math.random() * (10.5 - 3) + 3;
+    const ToDayT = randomT - randomT * Math.random();
+
+    if (ToDayT < timeIDEAvg * 0.9) {
+        triger = triger + 1;
+
+    }
+
+    const randomC = Math.random() * (10 - 1) + 1;
+    const ToDayC = randomC - randomC * Math.random();
+
+    if (ToDayC < commitAvg * 0.9) {
+        triger = triger + 1;
+
+    }
+
+    const randomK = Math.random() * (40000 - 500) + 500;
+    const ToDayK = randomK - randomK * Math.random();
+
+    if (ToDayK < touchKeyboardAvg * 0.9) {
+        triger = triger + 1;
+
+    }
+
+    triggers[`Employee ${j}`] = triger;
+    triger = 0;
+
+                
+
+                // create a new table for the current user
+                const outputDiv = document.getElementById("output");
+
+outputDiv.innerHTML += `<h2>User ${j} Results</h2>
+<table border="1" class="table table-primary">
+  <tr>
+    <th>Metric</th>
+    <th>Average Value</th>
+    <th>Today's Value</th>
+  </tr>
+  <tr>
+    <td>message</td>
+    <td>${messageAvg.toFixed(0)}</td>
+    <td class="${[ToDayM < messageAvg,ToDayT < timeIDEAvg,ToDayC < commitAvg,ToDayK < touchKeyboardAvg].filter(e=>e==true).length>=3 ? 'bg-danger' : 'bg-positive'}">${ToDayM.toFixed(0)}</td>
+  </tr>
+  <tr>
+    <td>timeIDE</td>
+    <td>${timeIDEAvg.toFixed(0)}</td>
+    <td class="${[ToDayM < messageAvg,ToDayT < timeIDEAvg,ToDayC < commitAvg,ToDayK < touchKeyboardAvg].filter(e=>e==true).length>=3 ? 'bg-danger' : 'bg-positive'}">${ToDayT.toFixed(0)}</td>
+  </tr>
+  <tr>
+    <td>commit</td>
+    <td>${commitAvg.toFixed(0)}</td>
+    <td class="${[ToDayM < messageAvg,ToDayT < timeIDEAvg,ToDayC < commitAvg,ToDayK < touchKeyboardAvg].filter(e=>e==true).length>=3 ? 'bg-danger' : 'bg-positive'}">${ToDayC.toFixed(0)}</td>
+  </tr>
+  <tr>
+    <td>touchKeyboard</td>
+    <td>${touchKeyboardAvg.toFixed(0)}</td>
+    <td class="${[ToDayM < messageAvg,ToDayT < timeIDEAvg,ToDayC < commitAvg,ToDayK < touchKeyboardAvg].filter(e=>e==true).length>=3 ? 'bg-danger' : 'bg-positive'}">${ToDayK.toFixed(0)}</td>
+  </tr>
+</table><hr>`;
+}
+        }
+
+    
+    </script>
+    <style>
+        .bg-danger {
+  background-color: red;
+}
+        .bg-positive {
+  background-color: green !important;
+  color: #fff;
+}
+
+    </style>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</body> 
+
+</html>
